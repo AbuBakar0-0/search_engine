@@ -12,6 +12,7 @@ import (
 func main() {
 
 	// Step 1 : Read FILE.txt
+
 	_, err := os.Stat("words.txt")
 
 	if errors.Is(err, os.ErrNotExist) {
@@ -29,17 +30,19 @@ func main() {
 	lines := string(content)
 
 	// Step 2 : Convert in Array of lines
+
 	arrlines := strings.Split(lines, "\n")
 
 	// for i := 0; i < len(arrlines); i++ {
 	// 	fmt.Println(arrlines[i])
 	// }
 
-	// Step 3 : Create LineMap
-	linemap := make(map[int]string)
+	//Step 3 : Create LineMap
+
+	linemap := make(map[int][]string)
 
 	for i := 0; i < len(arrlines); i++ {
-		linemap[i] = arrlines[i]
+		linemap[i] = strings.Fields(arrlines[i])
 	}
 
 	for k, v := range linemap {
