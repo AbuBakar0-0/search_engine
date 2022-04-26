@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"time"
 )
 
 const (
@@ -58,6 +59,10 @@ func (t *trie) find(word string) bool {
 
 func main() {
 
+	defer func(since time.Time) {
+		fmt.Printf("TIME TAKEN : %s \n", time.Since(since))
+	}(time.Now())
+
 	// Step 1 : Read FILE.txt
 
 	search := "dear"
@@ -94,9 +99,9 @@ func main() {
 		linemap[i+1] = strings.Fields(arrlines[i])
 	}
 
-	// for k, v := range linemap {
-	// 	fmt.Println(k, " VALUE IS ", v)
-	// }
+	for k, v := range linemap {
+		fmt.Println(k, " VALUE IS ", v)
+	}
 
 	//Step 4 : Create token map
 
