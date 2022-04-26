@@ -9,7 +9,6 @@ import (
 )
 
 const (
-	//ALBHABET_SIZE total characters in english alphabet
 	ALBHABET_SIZE = 26
 )
 
@@ -147,9 +146,12 @@ func main() {
 	found := trie.find(search)
 	if found {
 		fmt.Printf("Word \"%s\" found in trie\n", search)
+		fmt.Println("FOUND : ", tokenMap[search])
 	} else {
 		fmt.Printf("Word \"%s\" not found in trie\n", search)
 	}
+
+	//Step 8: looking for word in token map
 
 }
 
