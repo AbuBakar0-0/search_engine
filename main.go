@@ -152,7 +152,7 @@ func main() {
 		//Step 8: looking for word in token map
 
 		for i := 0; i < len(tokenMap[search]); i++ {
-			fmt.Println(linemap[tokenMap[search][i]])
+			fmt.Println("LINE :", tokenMap[search][i], " -> ", linemap[tokenMap[search][i]])
 		}
 
 	} else {
