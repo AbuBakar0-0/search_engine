@@ -8,6 +8,55 @@ import (
 	"strings"
 )
 
+const (
+	//ALBHABET_SIZE total characters in english alphabet
+	ALBHABET_SIZE = 26
+)
+
+type trieNode struct {
+	childrens [ALBHABET_SIZE]*trieNode
+	isWordEnd bool
+}
+
+type trie struct {
+	root *trieNode
+}
+
+func initTrie() *trie {
+	return &trie{
+		root: &trieNode{},
+	}
+}
+
+func (t *trie) insert(word string) {
+	wordLength := len(word)
+	current := t.root
+	for i := 0; i < wordLength; i++ {
+		index := word[i] - 'a'
+		if current.childrens[index] == nil {
+			current.childrens[index] = &trieNode{}
+		}
+		current = current.childrens[index]
+	}
+	current.isWordEnd = true
+}
+
+func (t *trie) find(word string) bool {
+	wordLength := len(word)
+	current := t.root
+	for i := 0; i < wordLength; i++ {
+		index := word[i] - 'a'
+		if current.childrens[index] == nil {
+			return false
+		}
+		current = current.childrens[index]
+	}
+	if current.isWordEnd {
+		return true
+	}
+	return false
+}
+
 func main() {
 
 	// Step 1 : Read FILE.txt
@@ -81,8 +130,23 @@ func main() {
 		}
 	}
 
-	for k, v := range tokens {
-		fmt.Println(k, " VALUE IS ", v)
+	// for k, v := range tokens {
+	// 	fmt.Println(k, " VALUE IS ", v)
+	// }
+
+	//Step 6: Create Trie
+
+	trie := initTrie()
+
+	for i := 0; i < len(tokens); i++ {
+		trie.insert(tokens[i])
+	}
+
+	found := trie.find(search)
+	if found {
+		fmt.Printf("Word \"%s\" found in trie\n", search)
+	} else {
+		fmt.Printf("Word \"%s\" not found in trie\n", search)
 	}
 
 }
