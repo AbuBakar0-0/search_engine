@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -17,11 +16,11 @@ func main() {
 
 	_, err := os.Stat("words.txt")
 
-	if errors.Is(err, os.ErrNotExist) {
-		fmt.Println("file does not exist")
-	} else {
-		fmt.Println("file exists")
-	}
+	// if errors.Is(err, os.ErrNotExist) {
+	// 	fmt.Println("file does not exist")
+	// } else {
+	// 	fmt.Println("file exists")
+	// }
 
 	content, err := ioutil.ReadFile("words.txt")
 
@@ -66,8 +65,34 @@ func main() {
 	}
 	tokenMap[search] = lineNumbers
 
-	for k, v := range tokenMap {
+	// for k, v := range tokenMap {
+	// 	fmt.Println(k, " VALUE IS ", v)
+	// }
+
+	//Step 5: Token Array
+
+	tokens := make([]string, 0)
+
+	for i := 0; i < len(linemap); i++ {
+		for j := 0; j < len(linemap[i]); j++ {
+			if !contains(tokens, linemap[i][j]) {
+				tokens = append(tokens, linemap[i][j])
+			}
+		}
+	}
+
+	for k, v := range tokens {
 		fmt.Println(k, " VALUE IS ", v)
 	}
 
+}
+
+func contains(s []string, str string) bool {
+	for _, v := range s {
+		if v == str {
+			return true
+		}
+	}
+
+	return false
 }
