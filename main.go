@@ -166,6 +166,5 @@ func contains(s []string, str string) bool {
 			return true
 		}
 	}
-
 	return false
 }
