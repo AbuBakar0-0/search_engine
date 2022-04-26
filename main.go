@@ -142,6 +142,8 @@ func main() {
 		trie.insert(tokens[i])
 	}
 
+	//Step 7: Search in Trie
+
 	found := trie.find(search)
 	if found {
 		fmt.Printf("Word \"%s\" found in trie\n", search)
