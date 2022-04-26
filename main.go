@@ -111,6 +111,7 @@ func main() {
 			}
 		}
 	}
+
 	tokenMap[search] = lineNumbers
 
 	// for k, v := range tokenMap {
