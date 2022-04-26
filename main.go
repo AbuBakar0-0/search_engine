@@ -146,12 +146,17 @@ func main() {
 	found := trie.find(search)
 	if found {
 		fmt.Printf("Word \"%s\" found in trie\n", search)
-		fmt.Println("FOUND : ", tokenMap[search])
+		fmt.Println("FOUND : ")
+
+		//Step 8: looking for word in token map
+
+		for i := 0; i < len(tokenMap[search]); i++ {
+			fmt.Println(linemap[tokenMap[search][i]])
+		}
+
 	} else {
 		fmt.Printf("Word \"%s\" not found in trie\n", search)
 	}
-
-	//Step 8: looking for word in token map
 
 }
 
